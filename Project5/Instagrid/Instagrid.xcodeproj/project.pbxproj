@@ -14,7 +14,7 @@
 		030BF68C21D4D28600DFAB2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030BF68A21D4D28600DFAB2F /* LaunchScreen.storyboard */; };
 		030BF69821D8BBD400DFAB2F /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 030BF69721D8BBD400DFAB2F /* ThirstySoftRegular.otf */; };
 		030BF69A21D8BBDC00DFAB2F /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 030BF69921D8BBDC00DFAB2F /* Delm-Medium.otf */; };
-		03B08DE621DD256D00590450 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B08DE521DD256D00590450 /* ButtonView.swift */; };
+		03A7250221E39C0E0034EE61 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7250121E39C0E0034EE61 /* Manager.swift */; };
 		03B08DE821DD259100590450 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B08DE721DD259100590450 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +28,7 @@
 		030BF68D21D4D28600DFAB2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		030BF69721D8BBD400DFAB2F /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ThirstySoftRegular.otf; path = ../ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		030BF69921D8BBDC00DFAB2F /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delm-Medium.otf"; path = "../Delm-Medium.otf"; sourceTree = "<group>"; };
-		03B08DE521DD256D00590450 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		03A7250121E39C0E0034EE61 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		03B08DE721DD259100590450 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,8 +78,7 @@
 		030BF69321D4D2B100DFAB2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				03B08DE521DD256D00590450 /* ButtonView.swift */,
-				03B08DE721DD259100590450 /* MainView.swift */,
+				03A7250121E39C0E0034EE61 /* Manager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -88,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				030BF68521D4D28400DFAB2F /* Main.storyboard */,
+				03B08DE721DD259100590450 /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,7 +176,7 @@
 				030BF68421D4D28400DFAB2F /* ViewController.swift in Sources */,
 				03B08DE821DD259100590450 /* MainView.swift in Sources */,
 				030BF68221D4D28400DFAB2F /* AppDelegate.swift in Sources */,
-				03B08DE621DD256D00590450 /* ButtonView.swift in Sources */,
+				03A7250221E39C0E0034EE61 /* Manager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,14 +322,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Instagrid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fr.NicolasLion.Instagrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -339,14 +343,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Instagrid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fr.NicolasLion.Instagrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
