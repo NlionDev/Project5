@@ -16,6 +16,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var reverseViewbutton: UIButton!
     @IBOutlet weak var squareViewbutton: UIButton!
     @IBOutlet weak var mainView: MainView!
+    @IBOutlet weak var swipeUpLabel: UILabel!
+    @IBOutlet weak var swipeicon: UIImageView!
     
     let selected = UIImage(named: "Selected")
     let imagePicker = UIImagePickerController()
@@ -34,8 +36,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @objc func didSwipeTop() {
-        
+        UIView.animate(withDuration: 0.1, animations: animateMainView)
+        share()
+        resetAnimation()
     }
+    
+    private func resetAnimation() {
+        mainView.transform = .identity
+        swipeUpLabel.isHidden = false
+        swipeicon.isHidden = false
+    }
+    
+    private func animateMainView() {
+        mainView.transform = CGAffineTransform(translationX: 0, y: -500)
+        swipeUpLabel.isHidden = true
+        swipeicon.isHidden = true
+    }
+    
+   private func share() {
+        let itemToShare = [mainView]
+        let activityController = UIActivityViewController(activityItems: itemToShare as [Any], applicationActivities: nil)
+        self.present(activityController, animated: true, completion: nil)
+    }
+    
     
     @IBAction func didTapClassicViewButton() {
         setupClassicView()

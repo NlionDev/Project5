@@ -544,6 +544,8 @@
                         <outlet property="mainView" destination="lEc-X2-6pG" id="Jtc-yt-5JB"/>
                         <outlet property="reverseViewbutton" destination="15B-0Z-V30" id="sti-b8-vAJ"/>
                         <outlet property="squareViewbutton" destination="Sa6-Qr-xA9" id="hRP-7b-Cb1"/>
+                        <outlet property="swipeUpLabel" destination="gc8-5Q-R66" id="D8g-9S-FaB"/>
+                        <outlet property="swipeicon" destination="ozd-E9-6ab" id="qYA-LP-gah"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
