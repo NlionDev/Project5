@@ -103,7 +103,17 @@ class MainView: UIView {
         botButton2.removeFromSuperview()
     }
     
-    
+}
+
+// MARK: - Extension
+
+extension MainView {
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image(actions: { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        })
+    }
 }
 
 

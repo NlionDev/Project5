@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="landscape">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -23,14 +23,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Instagrid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEc-X2-6pG" userLabel="MainView" customClass="MainView" customModule="Instagrid" customModuleProvider="target">
-                                <rect key="frame" x="191" y="60" width="285" height="285"/>
+                                <rect key="frame" x="38" y="184" width="299" height="299"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f7b-O9-1bk" userLabel="FirstLineStackView">
-                                        <rect key="frame" x="10" y="10" width="265" height="127.5"/>
+                                        <rect key="frame" x="10" y="10" width="279" height="134.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="135" id="Oo7-MO-K9Y"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="103" id="RBM-bB-8i8"/>
@@ -64,7 +64,7 @@
                                         </variation>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Oca-BP-IK1" userLabel="SecondLineStackView">
-                                        <rect key="frame" x="10" y="147.5" width="265" height="127.5"/>
+                                        <rect key="frame" x="10" y="154.5" width="279" height="134.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="280" id="6B8-UR-PuE"/>
@@ -224,7 +224,7 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Instagrid" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDk-Xr-QYr">
-                                <rect key="frame" x="274.5" y="8" width="118.5" height="39"/>
+                                <rect key="frame" x="127.5" y="30" width="120" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="CS8-hx-q8W"/>
                                 </constraints>
@@ -243,7 +243,7 @@
                                 </variation>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="dpS-65-i6X" userLabel="ButtonStackView">
-                                <rect key="frame" x="557" y="37.5" width="80" height="300"/>
+                                <rect key="frame" x="37.5" y="557" width="300" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="15B-0Z-V30" userLabel="Reverse">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -253,14 +253,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65R-db-Wdt" userLabel="Classic">
-                                        <rect key="frame" x="0.0" y="110" width="80" height="80"/>
+                                        <rect key="frame" x="110" y="0.0" width="80" height="80"/>
                                         <state key="normal" backgroundImage="Layout2"/>
                                         <connections>
                                             <action selector="didTapClassicViewButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="gif-bo-YKg"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sa6-Qr-xA9" userLabel="Square">
-                                        <rect key="frame" x="0.0" y="220" width="80" height="80"/>
+                                        <rect key="frame" x="220" y="0.0" width="80" height="80"/>
                                         <state key="normal" backgroundImage="Layout3"/>
                                         <connections>
                                             <action selector="didTapSquareViewButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="l7U-5J-MdR"/>
@@ -305,7 +305,7 @@
                                 </variation>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="&lt;" translatesAutoresizingMaskIntoConstraints="NO" id="ozd-E9-6ab" userLabel="swipeIcon">
-                                <rect key="frame" x="87" y="144" width="15" height="15"/>
+                                <rect key="frame" x="180" y="122" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="Q9J-X0-TUY"/>
                                     <constraint firstAttribute="width" constant="15" id="akq-UN-CS6"/>
@@ -344,7 +344,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gc8-5Q-R66">
-                                <rect key="frame" x="8" y="174" width="173" height="27"/>
+                                <rect key="frame" x="113.5" y="142" width="148" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="148" id="2UI-xA-sKH"/>
                                     <constraint firstAttribute="height" constant="27" id="nFP-bP-DHu"/>
@@ -436,12 +436,8 @@
                                 <exclude reference="T6o-L5-Wp4"/>
                                 <exclude reference="fiV-A0-qR7"/>
                                 <exclude reference="qmG-eu-2ec"/>
-                                <exclude reference="EcE-ux-UUH"/>
-                                <exclude reference="Iq1-rf-8r9"/>
-                                <exclude reference="NhQ-gS-add"/>
-                                <exclude reference="PAX-OF-la4"/>
-                                <exclude reference="VVD-J7-dCE"/>
-                                <exclude reference="WgC-mC-JZH"/>
+                                <exclude reference="Dx1-Dy-AqX"/>
+                                <exclude reference="EeX-3o-BM3"/>
                                 <exclude reference="BtB-Oz-fe2"/>
                                 <exclude reference="KNt-CX-WXK"/>
                                 <exclude reference="L7w-mI-0Hc"/>
@@ -468,8 +464,12 @@
                                 <exclude reference="vtV-8l-E6x"/>
                                 <exclude reference="wir-rL-YMn"/>
                                 <exclude reference="yiN-6H-4sM"/>
-                                <exclude reference="Dx1-Dy-AqX"/>
-                                <exclude reference="EeX-3o-BM3"/>
+                                <exclude reference="EcE-ux-UUH"/>
+                                <exclude reference="Iq1-rf-8r9"/>
+                                <exclude reference="NhQ-gS-add"/>
+                                <exclude reference="PAX-OF-la4"/>
+                                <exclude reference="VVD-J7-dCE"/>
+                                <exclude reference="WgC-mC-JZH"/>
                                 <exclude reference="891-qv-m6L"/>
                                 <exclude reference="aJe-vH-Gz2"/>
                                 <exclude reference="c27-63-nD7"/>
@@ -485,8 +485,6 @@
                                 <include reference="PyL-JV-3gZ"/>
                                 <exclude reference="fiV-A0-qR7"/>
                                 <exclude reference="qmG-eu-2ec"/>
-                                <include reference="NhQ-gS-add"/>
-                                <include reference="VVD-J7-dCE"/>
                                 <include reference="KNt-CX-WXK"/>
                                 <include reference="b07-kD-dj2"/>
                                 <include reference="hx5-q5-en1"/>
@@ -500,6 +498,8 @@
                                 <exclude reference="rnS-Vt-YtZ"/>
                                 <exclude reference="wir-rL-YMn"/>
                                 <include reference="yiN-6H-4sM"/>
+                                <include reference="NhQ-gS-add"/>
+                                <include reference="VVD-J7-dCE"/>
                                 <exclude reference="891-qv-m6L"/>
                                 <include reference="mUS-Jk-ddS"/>
                             </mask>
@@ -507,8 +507,7 @@
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="constraints">
                                 <include reference="R5J-hv-s5M"/>
-                                <include reference="EcE-ux-UUH"/>
-                                <include reference="WgC-mC-JZH"/>
+                                <include reference="EeX-3o-BM3"/>
                                 <include reference="BtB-Oz-fe2"/>
                                 <include reference="R6V-6G-AzM"/>
                                 <include reference="SYt-Rw-eYj"/>
@@ -516,7 +515,8 @@
                                 <include reference="AQV-Jq-ahP"/>
                                 <include reference="duW-Oh-9vN"/>
                                 <include reference="vtV-8l-E6x"/>
-                                <include reference="EeX-3o-BM3"/>
+                                <include reference="EcE-ux-UUH"/>
+                                <include reference="WgC-mC-JZH"/>
                                 <include reference="aJe-vH-Gz2"/>
                                 <include reference="tRp-Bq-oo3"/>
                             </mask>
@@ -525,15 +525,15 @@
                             <mask key="constraints">
                                 <include reference="B8L-gQ-Sty"/>
                                 <include reference="T6o-L5-Wp4"/>
-                                <include reference="Iq1-rf-8r9"/>
-                                <include reference="PAX-OF-la4"/>
+                                <include reference="Dx1-Dy-AqX"/>
                                 <include reference="L7w-mI-0Hc"/>
                                 <include reference="LNZ-hD-kfI"/>
                                 <include reference="CSY-Gw-d4g"/>
                                 <include reference="CXX-Bi-iHs"/>
                                 <include reference="GDP-iT-UXZ"/>
                                 <include reference="iuE-in-wnf"/>
-                                <include reference="Dx1-Dy-AqX"/>
+                                <include reference="Iq1-rf-8r9"/>
+                                <include reference="PAX-OF-la4"/>
                                 <include reference="c27-63-nD7"/>
                                 <include reference="fu3-bY-ODL"/>
                             </mask>

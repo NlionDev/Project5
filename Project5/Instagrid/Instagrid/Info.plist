@@ -47,6 +47,12 @@
 		<string>ThirstySoftRegular.otf</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Instagrid wants to access your Gallery</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Instagrid wants to use your Camera</string>
+	<key>NSContactsUsageDescription</key>
+	<string></string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string></string>
 </dict>
 </plist>

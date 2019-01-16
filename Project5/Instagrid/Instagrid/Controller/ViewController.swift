@@ -59,26 +59,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    
     @objc func didTapButton(_ sender: UIButton) {
         buttonClickedTag = sender.tag
-        pickPhotoFromLibrary()
-        
+      showAction()
     }
   
     @IBAction func didTapClassicViewButton() {
+        hideMainView()
         setupClassicView()
     }
     
     @IBAction func didTapReverseViewButton() {
+        hideMainView()
         setuptReverseView()
     }
     
     @IBAction func didTapSquareViewButton() {
+        hideMainView()
         setupSquareView()
     }
     
     // Mark: - Functions
+    
+    private func showAction() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (alert:UIAlertAction!) -> Void in
+            self.pickPhotoFromCamera()
+        }))
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (alert:UIAlertAction!) -> Void in
+            self.pickPhotoFromLibrary()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     private func reverseAnimation() {
         UIView.animate(withDuration: 0.5) {
@@ -88,12 +101,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         swipeicon.isHidden = false
     }
     
+    private func hideMainView() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.mainView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+        }) { (success) in
+            self.showMainView()
+        }
+    }
+    
+    private func showMainView() {
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
+            self.mainView.transform = CGAffineTransform.identity
+        }, completion: nil)
+    }
+    
     private func animateMainView() {
         if swipeGesture?.direction == .up {
             mainView.transform = CGAffineTransform(translationX: 0, y: -1500)
             swipeUpLabel.isHidden = true
             swipeicon.isHidden = true
-        } else {
+        } else if swipeGesture?.direction == .left {
             mainView.transform = CGAffineTransform(translationX: -1500, y: 0)
             swipeUpLabel.isHidden = true
             swipeicon.isHidden = true
@@ -101,8 +128,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     private func share() {
-        let itemToShare = [mainView]
-        let activityController = UIActivityViewController(activityItems: itemToShare as [Any], applicationActivities: nil)
+        let itemToShare = mainView.asImage()
+        let activityController = UIActivityViewController(activityItems: [itemToShare] as [UIImage], applicationActivities: nil)
         self.present(activityController, animated: true, completion: reverseAnimation)
     }
     
@@ -118,7 +145,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         classicViewButton.setImage(nil, for: .normal)
         reverseViewbutton.setImage(selected, for: .normal)
         squareViewbutton.setImage(nil, for: .normal)
-        
     }
     
     private func setupSquareView() {
@@ -133,6 +159,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
             imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    private func pickPhotoFromCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
@@ -160,21 +195,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
     
-
-    
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
         
-        DispatchQueue.main.async {
-            if newCollection.verticalSizeClass == .regular {
-                self.swipeUpLabel.text = "Swipe up to share"
-                self.swipeGesture?.direction = .up
-            } else {
-                self.swipeUpLabel.text = "Swipe left to share"
-                self.swipeGesture?.direction = .left
-            }
+        if newCollection.verticalSizeClass == .regular {
+            self.swipeUpLabel.text = "Swipe up to share"
+            self.swipeGesture?.direction = .up
+        } else if newCollection.verticalSizeClass == .compact {
+            self.swipeUpLabel.text = "Swipe left to share"
+            self.swipeGesture?.direction = .left
         }
     }
+    
+
     
 }
 
