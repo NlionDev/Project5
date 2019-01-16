@@ -19,6 +19,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var mainView: MainView!
     @IBOutlet weak var swipeUpLabel: UILabel!
     @IBOutlet weak var swipeicon: UIImageView!
+    @IBOutlet weak var refreshButton: UIButton!
     
     // Mark: - Properties
     
@@ -34,6 +35,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        refreshButton.layer.cornerRadius = 15
         mainView.style = .classic
         classicViewButton.setImage(selected, for: .normal)
         mainView.initButtonTag()
@@ -82,6 +84,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setupSquareView()
     }
     
+    @IBAction func didTapRefreshButton() {
+        hideMainView()
+        mainView.initAllButtons()
+    }
+    
     // Mark: - Functions
     
     private func showAction() {
@@ -105,7 +112,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     private func hideMainView() {
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.05, animations: {
             self.mainView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         }) { (success) in
             self.showMainView()
@@ -113,7 +120,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     private func showMainView() {
-        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
+        UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
             self.mainView.transform = CGAffineTransform.identity
         }, completion: nil)
     }
