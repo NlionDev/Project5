@@ -36,6 +36,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         mainView.style = .classic
         classicViewButton.setImage(selected, for: .normal)
+        mainView.initButtonTag()
+        mainView.initAllButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +69,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func didTapClassicViewButton() {
         hideMainView()
         setupClassicView()
+        
     }
     
     @IBAction func didTapReverseViewButton() {

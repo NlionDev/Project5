@@ -37,66 +37,56 @@ class MainView: UIView {
         case reverse
         case square
     }
-    // Mark: - Actions
-    
-
-    
+ 
     // Mark: - Functions
+    
+    func initButtonTag() {
+        topButton1.tag = 1
+        topButton2.tag = 2
+        botButton1.tag = 3
+        botButton2.tag = 4
+    }
+    
+    func initAllButtons() {
+        initButton(button: topButton1)
+        initButton(button: topButton2)
+        initButton(button: botButton1)
+        initButton(button: botButton2)
+    }
 
     private func setStyle(_ style: Style) {
         refresh()
         switch style {
         case .classic:
-            setupTopButton1()
-            setupTopButton2()
-            setupBotButton1()
+            setupButton(button: topButton1, in: firstLineStackView)
+            setupButton(button: topButton2, in: firstLineStackView)
+            setupButton(button: botButton1, in: secondLineStackView)
             
         case .reverse:
-            setupTopButton1()
-            setupBotButton1()
-            setupBotButton2()
-
+            setupButton(button: topButton1, in: firstLineStackView)
+            setupButton(button: botButton1, in: secondLineStackView)
+            setupButton(button: botButton2, in: secondLineStackView)
+            
         case .square:
-            setupTopButton1()
-            setupTopButton2()
-            setupBotButton1()
-            setupBotButton2()
+            setupButton(button: topButton1, in: firstLineStackView)
+            setupButton(button: topButton2, in: firstLineStackView)
+            setupButton(button: botButton1, in: secondLineStackView)
+            setupButton(button: botButton2, in: secondLineStackView)
         }
     }
     
-    private func setupTopButton1() {
-        firstLineStackView.addArrangedSubview(topButton1)
-        topButton1.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        topButton1.tag = 1
-        topButton1.setImage(plus, for: .normal)
-        topButton1.addTarget(ViewController(), action: #selector(ViewController.didTapButton), for: .touchUpInside)
+    private func initButton(button: UIButton) {
+        button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        button.setImage(plus, for: .normal)
+        button.addTarget(ViewController(), action: #selector(ViewController.didTapButton), for: .touchUpInside)
+       
     }
     
-    private func setupTopButton2() {
-        firstLineStackView.addArrangedSubview(topButton2)
-        topButton2.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        topButton2.tag = 2
-        topButton2.setImage(plus, for: .normal)
-        topButton2.addTarget(ViewController(), action: #selector(ViewController.didTapButton), for: .touchUpInside)
+    private func setupButton(button: UIButton, in view: UIStackView) {
+        view.addArrangedSubview(button)
     }
-    
-    private func setupBotButton1() {
-        secondLineStackView.addArrangedSubview(botButton1)
-        botButton1.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        botButton1.tag = 3
-        botButton1.setImage(plus, for: .normal)
-        botButton1.addTarget(ViewController(), action: #selector(ViewController.didTapButton), for: .touchUpInside)
-    }
-    
-    private func setupBotButton2() {
-        secondLineStackView.addArrangedSubview(botButton2)
-        botButton2.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        botButton2.tag = 4
-        botButton2.setImage(plus, for: .normal)
-        botButton2.addTarget(ViewController(), action: #selector(ViewController.didTapButton), for: .touchUpInside)
-    }
-    
-   private func refresh() {
+ 
+    private func refresh() {
         topButton1.removeFromSuperview()
         topButton2.removeFromSuperview()
         botButton1.removeFromSuperview()
