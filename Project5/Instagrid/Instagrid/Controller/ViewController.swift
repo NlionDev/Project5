@@ -9,9 +9,9 @@
 import UIKit
 
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class ViewController: UIViewController, UINavigationControllerDelegate  {
     
-    // Mark: - Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var classicViewButton: UIButton!
     @IBOutlet weak var reverseViewbutton: UIButton!
@@ -21,30 +21,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var swipeicon: UIImageView!
     @IBOutlet weak var refreshButton: UIButton!
     
-    // Mark: - Properties
+    // MARK: - Properties
     
     let selected = UIImage(named: "Selected")
     let imagePicker = UIImagePickerController()
     var buttonClickedTag: Int?
     var swipeGesture: UISwipeGestureRecognizer?
-    let screenHeight = UIScreen.main.bounds.height
-    let screenWidth = UIScreen.main.bounds.width
     
-    // Mark: - Lifecycle
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         refreshButton.layer.cornerRadius = 15
+        mainView.delegate = self
         mainView.style = .classic
         classicViewButton.setImage(selected, for: .normal)
         mainView.initButtonTag()
         mainView.initAllButtons()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,23 +49,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         swipeGesture?.direction = .up
     }
     
-    // Mark: - Actions
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        if newCollection.verticalSizeClass == .regular {
+            self.swipeUpLabel.text = "Swipe up to share"
+            self.swipeGesture?.direction = .up
+        } else if newCollection.verticalSizeClass == .compact {
+            self.swipeUpLabel.text = "Swipe left to share"
+            self.swipeGesture?.direction = .left
+        }
+    }
+    
+    // MARK: - Actions
     
     @objc func didSwipe() {
         UIView.animate(withDuration: 0.5, animations: animateMainView) { (success) in
             self.share()
         }
     }
-    
-    @objc func didTapButton(_ sender: UIButton) {
-        buttonClickedTag = sender.tag
-      showAction()
-    }
-  
+
     @IBAction func didTapClassicViewButton() {
         hideMainView()
         setupClassicView()
-        
     }
     
     @IBAction func didTapReverseViewButton() {
@@ -89,7 +89,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         mainView.initAllButtons()
     }
     
-    // Mark: - Functions
+    // MARK: - Functions
     
     private func showAction() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -193,10 +193,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             mainView.botButton2.setImage(image, for: .normal)
         }
     }
+}
+
+extension ViewController:  UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
-        transformButton(with: buttonClickedTag!, image: image)
+            transformButton(with: buttonClickedTag!, image: image)
         }
         dismiss(animated: true, completion: nil)
     }
@@ -205,19 +208,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
     
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.willTransition(to: newCollection, with: coordinator)
-        
-        if newCollection.verticalSizeClass == .regular {
-            self.swipeUpLabel.text = "Swipe up to share"
-            self.swipeGesture?.direction = .up
-        } else if newCollection.verticalSizeClass == .compact {
-            self.swipeUpLabel.text = "Swipe left to share"
-            self.swipeGesture?.direction = .left
-        }
-    }
-    
-
-    
 }
 
+extension ViewController: MainViewDelegate {
+    func mainView(_ mainView: MainView, didSelectButton tag: Int) {
+        buttonClickedTag = tag
+        showAction()
+    }
+  
+}

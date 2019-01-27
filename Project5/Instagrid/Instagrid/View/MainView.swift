@@ -9,20 +9,26 @@
 import UIKit
 
 
+
+protocol MainViewDelegate: class {
+    func mainView(_ mainView: MainView, didSelectButton tag: Int)
+}
+
 class MainView: UIView {
     
-    // Mark: - Outlets
+    // MARK: - Outlets
     
    @IBOutlet var firstLineStackView: UIStackView!
    @IBOutlet var secondLineStackView: UIStackView!
 
-    // Mark: - Properties
+    // MARK - Properties
     
     let topButton1 = UIButton()
     let topButton2 = UIButton()
     let botButton1 = UIButton()
     let botButton2 = UIButton()
     let plus = UIImage(named: "Plus")
+    weak var delegate: MainViewDelegate?
     
     var style: Style = .classic {
         didSet {
@@ -30,15 +36,35 @@ class MainView: UIView {
         }
     }
     
-    // Mark: - Enum
+    // MARK: - Enum
     
     enum Style {
         case classic
         case reverse
         case square
     }
+    
+    // MARK: - Actions
+    
+    @objc func didTapButton(_ sender: UIButton) {
+        delegate?.mainView(self, didSelectButton: sender.tag)
+    }
  
-    // Mark: - Functions
+    // MARK: - Functions
+    
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image(actions: { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        })
+    }
+
+    func initAllButtons() {
+        initButton(button: topButton1)
+        initButton(button: topButton2)
+        initButton(button: botButton1)
+        initButton(button: botButton2)
+    }
     
     func initButtonTag() {
         topButton1.tag = 1
@@ -47,13 +73,10 @@ class MainView: UIView {
         botButton2.tag = 4
     }
     
-    func initAllButtons() {
-        initButton(button: topButton1)
-        initButton(button: topButton2)
-        initButton(button: botButton1)
-        initButton(button: botButton2)
-    }
 
+
+    // MARK: - Private Functions
+    
     private func setStyle(_ style: Style) {
         refresh()
         switch style {
@@ -75,17 +98,13 @@ class MainView: UIView {
         }
     }
     
+    
     private func initButton(button: UIButton) {
         button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         button.setImage(plus, for: .normal)
-        button.addTarget(ViewController(), action: #selector(ViewController.didTapButton), for: .touchUpInside)
-       
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }
     
-    private func setupButton(button: UIButton, in view: UIStackView) {
-        view.addArrangedSubview(button)
-    }
- 
     private func refresh() {
         topButton1.removeFromSuperview()
         topButton2.removeFromSuperview()
@@ -93,17 +112,11 @@ class MainView: UIView {
         botButton2.removeFromSuperview()
     }
     
-}
-
-// MARK: - Extension
-
-extension MainView {
-    func asImage() -> UIImage {
-        let renderer = UIGraphicsImageRenderer(bounds: bounds)
-        return renderer.image(actions: { rendererContext in
-            layer.render(in: rendererContext.cgContext)
-        })
+    private func setupButton(button: UIButton, in view: UIStackView) {
+        view.addArrangedSubview(button)
     }
+    
 }
+
 
 
