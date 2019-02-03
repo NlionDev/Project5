@@ -14,7 +14,8 @@
 		030BF68C21D4D28600DFAB2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030BF68A21D4D28600DFAB2F /* LaunchScreen.storyboard */; };
 		030BF69821D8BBD400DFAB2F /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 030BF69721D8BBD400DFAB2F /* ThirstySoftRegular.otf */; };
 		030BF69A21D8BBDC00DFAB2F /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 030BF69921D8BBDC00DFAB2F /* Delm-Medium.otf */; };
-		03B08DE821DD259100590450 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B08DE721DD259100590450 /* MainView.swift */; };
+		038595412202D8A80008DB70 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038595402202D8A80008DB70 /* Model.swift */; };
+		03B08DE821DD259100590450 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B08DE721DD259100590450 /* GridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +28,8 @@
 		030BF68D21D4D28600DFAB2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		030BF69721D8BBD400DFAB2F /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ThirstySoftRegular.otf; path = ../ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		030BF69921D8BBDC00DFAB2F /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delm-Medium.otf"; path = "../Delm-Medium.otf"; sourceTree = "<group>"; };
-		03B08DE721DD259100590450 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		038595402202D8A80008DB70 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		03B08DE721DD259100590450 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		030BF69321D4D2B100DFAB2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				038595402202D8A80008DB70 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -84,7 +87,7 @@
 		030BF69521D4D2C300DFAB2F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				03B08DE721DD259100590450 /* MainView.swift */,
+				03B08DE721DD259100590450 /* GridView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -171,8 +174,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				030BF68421D4D28400DFAB2F /* ViewController.swift in Sources */,
-				03B08DE821DD259100590450 /* MainView.swift in Sources */,
+				03B08DE821DD259100590450 /* GridView.swift in Sources */,
 				030BF68221D4D28400DFAB2F /* AppDelegate.swift in Sources */,
+				038595412202D8A80008DB70 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

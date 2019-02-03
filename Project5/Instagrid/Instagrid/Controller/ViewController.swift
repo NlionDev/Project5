@@ -9,84 +9,84 @@
 import UIKit
 
 
-class ViewController: UIViewController, UINavigationControllerDelegate  {
+class ViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var classicViewButton: UIButton!
-    @IBOutlet weak var reverseViewbutton: UIButton!
-    @IBOutlet weak var squareViewbutton: UIButton!
-    @IBOutlet weak var mainView: MainView!
-    @IBOutlet weak var swipeUpLabel: UILabel!
-    @IBOutlet weak var swipeicon: UIImageView!
-    @IBOutlet weak var refreshButton: UIButton!
+    @IBOutlet private weak var classicButton: UIButton!
+    @IBOutlet private weak var reverseButton: UIButton!
+    @IBOutlet private weak var squareButton: UIButton!
+    @IBOutlet private weak var gridView: GridView!
+    @IBOutlet private weak var swipeLabel: UILabel!
+    @IBOutlet private weak var swipeIcon: UIImageView!
+    @IBOutlet private weak var refreshButton: UIButton!
     
     // MARK: - Properties
     
-    let selected = UIImage(named: "Selected")
-    let imagePicker = UIImagePickerController()
-    var buttonClickedTag: Int?
-    var swipeGesture: UISwipeGestureRecognizer?
+    private var buttonClickedTag: Int?
+    private var swipeGesture: UISwipeGestureRecognizer?
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        setupImageForBotButtons()
         refreshButton.layer.cornerRadius = 15
-        mainView.delegate = self
-        mainView.style = .classic
-        classicViewButton.setImage(selected, for: .normal)
-        mainView.initButtonTag()
-        mainView.initAllButtons()
+        gridView.style = .classic
+        classicButton.isSelected = true
+        gridView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe))
-        self.view.addGestureRecognizer(swipeGesture!)
+        if let gesture = swipeGesture {
+        self.view.addGestureRecognizer(gesture)
         swipeGesture?.direction = .up
     }
+    }
+    
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
         
         if newCollection.verticalSizeClass == .regular {
-            self.swipeUpLabel.text = "Swipe up to share"
+            self.swipeLabel.text = "Swipe up to share"
             self.swipeGesture?.direction = .up
         } else if newCollection.verticalSizeClass == .compact {
-            self.swipeUpLabel.text = "Swipe left to share"
+            self.swipeLabel.text = "Swipe left to share"
             self.swipeGesture?.direction = .left
         }
     }
     
     // MARK: - Actions
     
-    @objc func didSwipe() {
-        UIView.animate(withDuration: 0.5, animations: animateMainView) { (success) in
+    @objc private func didSwipe() {
+        UIView.animate(withDuration: 0.5, animations: animateGridView) { (success) in
             self.share()
         }
     }
 
-    @IBAction func didTapClassicViewButton() {
-        hideMainView()
+    @IBAction private func didTapClassicButton() {
+        hideGridView()
         setupClassicView()
     }
     
-    @IBAction func didTapReverseViewButton() {
-        hideMainView()
+    @IBAction private func didTapReverseButton() {
+        hideGridView()
         setuptReverseView()
     }
     
-    @IBAction func didTapSquareViewButton() {
-        hideMainView()
+    @IBAction private func didTapSquareButton() {
+        hideGridView()
         setupSquareView()
     }
     
-    @IBAction func didTapRefreshButton() {
-        hideMainView()
-        mainView.initAllButtons()
+    @IBAction private func didTapRefreshButton() {
+        hideGridView()
+        gridView.refreshGridViewButtons()
     }
     
     // MARK: - Functions
@@ -103,78 +103,87 @@ class ViewController: UIViewController, UINavigationControllerDelegate  {
         self.present(alert, animated: true, completion: nil)
     }
     
+    
     private func reverseAnimation() {
         UIView.animate(withDuration: 0.5) {
-            self.mainView.transform = CGAffineTransform.identity
+            self.gridView.transform = CGAffineTransform.identity
         }
-        swipeUpLabel.isHidden = false
-        swipeicon.isHidden = false
+        swipeLabel.isHidden = false
+        swipeIcon.isHidden = false
     }
     
-    private func hideMainView() {
+    private func hideGridView() {
         UIView.animate(withDuration: 0.05, animations: {
-            self.mainView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+            self.gridView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         }) { (success) in
-            self.showMainView()
+            self.showGridView()
         }
     }
     
-    private func showMainView() {
+    private func showGridView() {
         UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
-            self.mainView.transform = CGAffineTransform.identity
+            self.gridView.transform = CGAffineTransform.identity
         }, completion: nil)
     }
     
-    private func animateMainView() {
+    private func animateGridView() {
         if swipeGesture?.direction == .up {
-            mainView.transform = CGAffineTransform(translationX: 0, y: -1500)
-            swipeUpLabel.isHidden = true
-            swipeicon.isHidden = true
+            gridView.transform = CGAffineTransform(translationX: 0, y: -1500)
+            swipeLabel.isHidden = true
+            swipeIcon.isHidden = true
         } else if swipeGesture?.direction == .left {
-            mainView.transform = CGAffineTransform(translationX: -1500, y: 0)
-            swipeUpLabel.isHidden = true
-            swipeicon.isHidden = true
+            gridView.transform = CGAffineTransform(translationX: -1500, y: 0)
+            swipeLabel.isHidden = true
+            swipeIcon.isHidden = true
         }
     }
     
     private func share() {
-        let itemToShare = mainView.asImage()
+        let itemToShare = gridView.asImage()
         let activityController = UIActivityViewController(activityItems: [itemToShare] as [UIImage], applicationActivities: nil)
         self.present(activityController, animated: true, completion: reverseAnimation)
     }
     
+    private func setupImageForBotButtons() {
+        classicButton.setImage(UIImage(named: "Selected"), for: .selected)
+        reverseButton.setImage(UIImage(named: "Selected"), for: .selected)
+        squareButton.setImage(UIImage(named: "Selected"), for: .selected)
+    }
+    
     private func setupClassicView() {
-        mainView.style = .classic
-        classicViewButton.setImage(selected, for: .normal)
-        reverseViewbutton.setImage(nil, for: .normal)
-        squareViewbutton.setImage(nil, for: .normal)
+        gridView.style = .classic
+        classicButton.isSelected = true
+        reverseButton.isSelected = false
+        squareButton.isSelected = false
     }
     
     private func setuptReverseView() {
-        mainView.style = .reverse
-        classicViewButton.setImage(nil, for: .normal)
-        reverseViewbutton.setImage(selected, for: .normal)
-        squareViewbutton.setImage(nil, for: .normal)
+        gridView.style = .reverse
+        reverseButton.isSelected = true
+        classicButton.isSelected = false
+        squareButton.isSelected = false
     }
     
     private func setupSquareView() {
-        mainView.style = .square
-        classicViewButton.setImage(nil, for: .normal)
-        reverseViewbutton.setImage(nil, for: .normal)
-        squareViewbutton.setImage(selected, for: .normal)
+        gridView.style = .square
+        squareButton.isSelected = true
+        classicButton.isSelected = false
+        reverseButton.isSelected = false
     }
     
     private func pickPhotoFromLibrary() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-            imagePicker.allowsEditing = false
+            imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
     private func pickPhotoFromCamera() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerController.SourceType.camera
             imagePicker.allowsEditing = true
@@ -182,24 +191,32 @@ class ViewController: UIViewController, UINavigationControllerDelegate  {
         }
     }
     
-    private func transformButton(with tag: Int, image: UIImage) {
-        if tag == mainView.topButton1.tag {
-            mainView.topButton1.setImage(image, for: .normal)
-        } else if tag == mainView.topButton2.tag {
-            mainView.topButton2.setImage(image, for: .normal)
-        } else if tag == mainView.botButton1.tag {
-            mainView.botButton1.setImage(image, for: .normal)
-        } else if tag == mainView.botButton2.tag {
-            mainView.botButton2.setImage(image, for: .normal)
+    private func transformGridViewButtons(with tag: Int, image: UIImage) {
+        if tag == gridView.topLeftButton.tag {
+            gridView.topLeftButton.setImage(image, for: .normal)
+        } else if tag == gridView.topRightButton.tag {
+            gridView.topRightButton.setImage(image, for: .normal)
+        } else if tag == gridView.botLeftButton.tag {
+            gridView.botLeftButton.setImage(image, for: .normal)
+        } else if tag == gridView.botRightButton.tag {
+            gridView.botRightButton.setImage(image, for: .normal)
         }
     }
+    
+//    private func setImageForGridViewbutton(image: UIImage) {
+//            gridView.topLeftButton.setImage(image, for: .selected)
+//            gridView.topRightButton.setImage(image, for: .selected)
+//            gridView.botLeftButton.setImage(image, for: .selected)
+//            gridView.botRightButton.setImage(image, for: .selected)
+//    }
 }
 
-extension ViewController:  UIImagePickerControllerDelegate {
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.originalImage] as? UIImage {
-            transformButton(with: buttonClickedTag!, image: image)
+        if let image = info[.originalImage] as? UIImage,
+            let buttonClickedTag = buttonClickedTag {
+            transformGridViewButtons(with: buttonClickedTag, image: image)
         }
         dismiss(animated: true, completion: nil)
     }
@@ -210,8 +227,8 @@ extension ViewController:  UIImagePickerControllerDelegate {
     
 }
 
-extension ViewController: MainViewDelegate {
-    func mainView(_ mainView: MainView, didSelectButton tag: Int) {
+extension ViewController: GridViewDelegate {
+    func gridView(_ mainView: GridView, didSelectButton tag: Int) {
         buttonClickedTag = tag
         showAction()
     }

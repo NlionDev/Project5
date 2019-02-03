@@ -26,7 +26,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEc-X2-6pG" userLabel="MainView" customClass="MainView" customModule="Instagrid" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEc-X2-6pG" userLabel="GridView" customClass="GridView" customModule="Instagrid" customModuleProvider="target">
                                 <rect key="frame" x="38" y="279" width="338" height="338"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f7b-O9-1bk" userLabel="FirstLineStackView">
@@ -219,8 +219,8 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <outlet property="firstLineStackView" destination="f7b-O9-1bk" id="SL6-GF-SEj"/>
-                                    <outlet property="secondLineStackView" destination="Oca-BP-IK1" id="vpB-Gq-xEI"/>
+                                    <outlet property="firstLineStackView" destination="f7b-O9-1bk" id="fse-xL-jCz"/>
+                                    <outlet property="secondLineStackView" destination="Oca-BP-IK1" id="kIc-8G-hkW"/>
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Instagrid" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDk-Xr-QYr">
@@ -265,21 +265,21 @@
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <state key="normal" backgroundImage="Layout1"/>
                                         <connections>
-                                            <action selector="didTapReverseViewButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sgu-FH-Tc2"/>
+                                            <action selector="didTapReverseButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="1TG-Yb-beR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65R-db-Wdt" userLabel="Classic">
                                         <rect key="frame" x="110" y="0.0" width="80" height="80"/>
                                         <state key="normal" backgroundImage="Layout2"/>
                                         <connections>
-                                            <action selector="didTapClassicViewButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="gif-bo-YKg"/>
+                                            <action selector="didTapClassicButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Aq-7k-B1u"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sa6-Qr-xA9" userLabel="Square">
                                         <rect key="frame" x="220" y="0.0" width="80" height="80"/>
                                         <state key="normal" backgroundImage="Layout3"/>
                                         <connections>
-                                            <action selector="didTapSquareViewButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="l7U-5J-MdR"/>
+                                            <action selector="didTapSquareButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="w6k-nI-e6X"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -516,6 +516,12 @@
                                 <exclude reference="fiV-A0-qR7"/>
                                 <exclude reference="k5Z-IH-yAH"/>
                                 <exclude reference="qmG-eu-2ec"/>
+                                <exclude reference="EcE-ux-UUH"/>
+                                <exclude reference="Iq1-rf-8r9"/>
+                                <exclude reference="NhQ-gS-add"/>
+                                <exclude reference="PAX-OF-la4"/>
+                                <exclude reference="VVD-J7-dCE"/>
+                                <exclude reference="WgC-mC-JZH"/>
                                 <exclude reference="BtB-Oz-fe2"/>
                                 <exclude reference="KNt-CX-WXK"/>
                                 <exclude reference="L7w-mI-0Hc"/>
@@ -525,18 +531,6 @@
                                 <exclude reference="b07-kD-dj2"/>
                                 <exclude reference="hx5-q5-en1"/>
                                 <exclude reference="uAT-En-AWd"/>
-                                <exclude reference="Dx1-Dy-AqX"/>
-                                <exclude reference="EeX-3o-BM3"/>
-                                <exclude reference="2da-Tb-Hpk"/>
-                                <exclude reference="IfH-cG-zXv"/>
-                                <exclude reference="QWI-1G-egR"/>
-                                <exclude reference="fu1-TX-6U9"/>
-                                <exclude reference="hmU-IF-83x"/>
-                                <exclude reference="nnQ-hZ-x5c"/>
-                                <exclude reference="o8p-qi-DAQ"/>
-                                <exclude reference="ptC-mH-LKo"/>
-                                <exclude reference="vI2-8s-mId"/>
-                                <exclude reference="w3P-Rw-myc"/>
                                 <exclude reference="3Jh-l1-LkA"/>
                                 <exclude reference="AQV-Jq-ahP"/>
                                 <exclude reference="CSY-Gw-d4g"/>
@@ -556,12 +550,18 @@
                                 <exclude reference="vtV-8l-E6x"/>
                                 <exclude reference="wir-rL-YMn"/>
                                 <exclude reference="yiN-6H-4sM"/>
-                                <exclude reference="EcE-ux-UUH"/>
-                                <exclude reference="Iq1-rf-8r9"/>
-                                <exclude reference="NhQ-gS-add"/>
-                                <exclude reference="PAX-OF-la4"/>
-                                <exclude reference="VVD-J7-dCE"/>
-                                <exclude reference="WgC-mC-JZH"/>
+                                <exclude reference="Dx1-Dy-AqX"/>
+                                <exclude reference="EeX-3o-BM3"/>
+                                <exclude reference="2da-Tb-Hpk"/>
+                                <exclude reference="IfH-cG-zXv"/>
+                                <exclude reference="QWI-1G-egR"/>
+                                <exclude reference="fu1-TX-6U9"/>
+                                <exclude reference="hmU-IF-83x"/>
+                                <exclude reference="nnQ-hZ-x5c"/>
+                                <exclude reference="o8p-qi-DAQ"/>
+                                <exclude reference="ptC-mH-LKo"/>
+                                <exclude reference="vI2-8s-mId"/>
+                                <exclude reference="w3P-Rw-myc"/>
                                 <exclude reference="891-qv-m6L"/>
                                 <exclude reference="PIc-AF-Qlu"/>
                                 <exclude reference="aJe-vH-Gz2"/>
@@ -579,13 +579,12 @@
                                 <include reference="PyL-JV-3gZ"/>
                                 <exclude reference="fiV-A0-qR7"/>
                                 <exclude reference="qmG-eu-2ec"/>
+                                <include reference="NhQ-gS-add"/>
+                                <include reference="VVD-J7-dCE"/>
                                 <include reference="KNt-CX-WXK"/>
                                 <include reference="b07-kD-dj2"/>
                                 <include reference="hx5-q5-en1"/>
                                 <include reference="uAT-En-AWd"/>
-                                <include reference="2da-Tb-Hpk"/>
-                                <include reference="fu1-TX-6U9"/>
-                                <include reference="vI2-8s-mId"/>
                                 <include reference="Exj-2v-nTD"/>
                                 <include reference="MO2-rX-IcK"/>
                                 <exclude reference="UFf-Et-Ahb"/>
@@ -596,8 +595,9 @@
                                 <exclude reference="rnS-Vt-YtZ"/>
                                 <exclude reference="wir-rL-YMn"/>
                                 <include reference="yiN-6H-4sM"/>
-                                <include reference="NhQ-gS-add"/>
-                                <include reference="VVD-J7-dCE"/>
+                                <include reference="2da-Tb-Hpk"/>
+                                <include reference="fu1-TX-6U9"/>
+                                <include reference="vI2-8s-mId"/>
                                 <exclude reference="891-qv-m6L"/>
                                 <include reference="mUS-Jk-ddS"/>
                             </mask>
@@ -605,20 +605,20 @@
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="constraints">
                                 <include reference="R5J-hv-s5M"/>
+                                <include reference="EcE-ux-UUH"/>
+                                <include reference="WgC-mC-JZH"/>
                                 <include reference="BtB-Oz-fe2"/>
                                 <include reference="R6V-6G-AzM"/>
                                 <include reference="SYt-Rw-eYj"/>
-                                <include reference="EeX-3o-BM3"/>
-                                <include reference="IfH-cG-zXv"/>
-                                <include reference="hmU-IF-83x"/>
-                                <include reference="ptC-mH-LKo"/>
                                 <include reference="3Jh-l1-LkA"/>
                                 <include reference="AQV-Jq-ahP"/>
                                 <include reference="d7t-Sb-SAA"/>
                                 <include reference="duW-Oh-9vN"/>
                                 <include reference="vtV-8l-E6x"/>
-                                <include reference="EcE-ux-UUH"/>
-                                <include reference="WgC-mC-JZH"/>
+                                <include reference="EeX-3o-BM3"/>
+                                <include reference="IfH-cG-zXv"/>
+                                <include reference="hmU-IF-83x"/>
+                                <include reference="ptC-mH-LKo"/>
                                 <include reference="aJe-vH-Gz2"/>
                                 <include reference="tRp-Bq-oo3"/>
                             </mask>
@@ -628,19 +628,19 @@
                                 <include reference="B8L-gQ-Sty"/>
                                 <include reference="T6o-L5-Wp4"/>
                                 <include reference="k5Z-IH-yAH"/>
+                                <include reference="Iq1-rf-8r9"/>
+                                <include reference="PAX-OF-la4"/>
                                 <include reference="L7w-mI-0Hc"/>
                                 <include reference="LNZ-hD-kfI"/>
+                                <include reference="CSY-Gw-d4g"/>
+                                <include reference="CXX-Bi-iHs"/>
+                                <include reference="GDP-iT-UXZ"/>
+                                <include reference="iuE-in-wnf"/>
                                 <include reference="Dx1-Dy-AqX"/>
                                 <include reference="QWI-1G-egR"/>
                                 <include reference="nnQ-hZ-x5c"/>
                                 <include reference="o8p-qi-DAQ"/>
                                 <include reference="w3P-Rw-myc"/>
-                                <include reference="CSY-Gw-d4g"/>
-                                <include reference="CXX-Bi-iHs"/>
-                                <include reference="GDP-iT-UXZ"/>
-                                <include reference="iuE-in-wnf"/>
-                                <include reference="Iq1-rf-8r9"/>
-                                <include reference="PAX-OF-la4"/>
                                 <include reference="PIc-AF-Qlu"/>
                                 <include reference="c27-63-nD7"/>
                                 <include reference="fu3-bY-ODL"/>
@@ -649,13 +649,13 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="classicViewButton" destination="65R-db-Wdt" id="cpe-sU-ILG"/>
-                        <outlet property="mainView" destination="lEc-X2-6pG" id="Jtc-yt-5JB"/>
+                        <outlet property="classicButton" destination="65R-db-Wdt" id="x5n-PT-nYH"/>
+                        <outlet property="gridView" destination="lEc-X2-6pG" id="33r-lw-uFD"/>
                         <outlet property="refreshButton" destination="KVP-HV-ugy" id="ggD-UA-Eb6"/>
-                        <outlet property="reverseViewbutton" destination="15B-0Z-V30" id="sti-b8-vAJ"/>
-                        <outlet property="squareViewbutton" destination="Sa6-Qr-xA9" id="hRP-7b-Cb1"/>
-                        <outlet property="swipeUpLabel" destination="gc8-5Q-R66" id="D8g-9S-FaB"/>
-                        <outlet property="swipeicon" destination="ozd-E9-6ab" id="qYA-LP-gah"/>
+                        <outlet property="reverseButton" destination="15B-0Z-V30" id="AuC-Gc-fRp"/>
+                        <outlet property="squareButton" destination="Sa6-Qr-xA9" id="oPe-Ie-G5X"/>
+                        <outlet property="swipeIcon" destination="ozd-E9-6ab" id="fy1-ka-sQM"/>
+                        <outlet property="swipeLabel" destination="gc8-5Q-R66" id="YA2-o9-ded"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
