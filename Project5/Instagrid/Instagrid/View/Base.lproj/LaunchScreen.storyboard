@@ -28,12 +28,6 @@
                                 <fontDescription key="fontDescription" name="ThirstySoftRegular" family="Thirsty Soft" pointSize="59"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact-widthClass=compact">
-                                    <fontDescription key="fontDescription" name="ThirstySoftRegular" family="Thirsty Soft" pointSize="59"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <fontDescription key="fontDescription" name="ThirstySoftRegular" family="Thirsty Soft" pointSize="59"/>
-                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.71362143749999996" green="0.84266054629999998" blue="0.89726132150000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

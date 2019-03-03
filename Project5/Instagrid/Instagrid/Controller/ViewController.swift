@@ -43,28 +43,27 @@ class ViewController: UIViewController {
         
         swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe))
         if let gesture = swipeGesture {
-        self.view.addGestureRecognizer(gesture)
-        swipeGesture?.direction = .up
+            view.addGestureRecognizer(gesture)
+            swipeGesture?.direction = .up
+        }
     }
-    }
-    
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
         
         if newCollection.verticalSizeClass == .regular {
-            self.swipeLabel.text = "Swipe up to share"
-            self.swipeGesture?.direction = .up
+            swipeLabel.text = "Swipe up to share"
+            swipeGesture?.direction = .up
         } else if newCollection.verticalSizeClass == .compact {
-            self.swipeLabel.text = "Swipe left to share"
-            self.swipeGesture?.direction = .left
+            swipeLabel.text = "Swipe left to share"
+            swipeGesture?.direction = .left
         }
     }
     
     // MARK: - Actions
     
     @objc private func didSwipe() {
-        UIView.animate(withDuration: 0.5, animations: animateGridView) { (success) in
+        UIView.animate(withDuration: 0.5, animations: animateGridView) { _ in
             self.share()
         }
     }
@@ -89,7 +88,7 @@ class ViewController: UIViewController {
         gridView.refreshGridViewButtons()
     }
     
-    // MARK: - Functions
+    // MARK: - Methods
     
     private func showAction() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -103,7 +102,6 @@ class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
     private func reverseAnimation() {
         UIView.animate(withDuration: 0.5) {
             self.gridView.transform = CGAffineTransform.identity
@@ -115,7 +113,7 @@ class ViewController: UIViewController {
     private func hideGridView() {
         UIView.animate(withDuration: 0.05, animations: {
             self.gridView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
-        }) { (success) in
+        }) { _ in
             self.showGridView()
         }
     }
@@ -141,7 +139,7 @@ class ViewController: UIViewController {
     private func share() {
         let itemToShare = gridView.asImage()
         let activityController = UIActivityViewController(activityItems: [itemToShare] as [UIImage], applicationActivities: nil)
-        self.present(activityController, animated: true, completion: reverseAnimation)
+        present(activityController, animated: true, completion: reverseAnimation)
     }
     
     private func setupImageForBotButtons() {
@@ -172,43 +170,22 @@ class ViewController: UIViewController {
     }
     
     private func pickPhotoFromLibrary() {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-            imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
-        }
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
     }
     
     private func pickPhotoFromCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerController.SourceType.camera
-            imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
-        }
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerController.SourceType.camera
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
     }
-    
-    private func transformGridViewButtons(with tag: Int, image: UIImage) {
-        if tag == gridView.topLeftButton.tag {
-            gridView.topLeftButton.setImage(image, for: .normal)
-        } else if tag == gridView.topRightButton.tag {
-            gridView.topRightButton.setImage(image, for: .normal)
-        } else if tag == gridView.botLeftButton.tag {
-            gridView.botLeftButton.setImage(image, for: .normal)
-        } else if tag == gridView.botRightButton.tag {
-            gridView.botRightButton.setImage(image, for: .normal)
-        }
-    }
-    
-//    private func setImageForGridViewbutton(image: UIImage) {
-//            gridView.topLeftButton.setImage(image, for: .selected)
-//            gridView.topRightButton.setImage(image, for: .selected)
-//            gridView.botLeftButton.setImage(image, for: .selected)
-//            gridView.botRightButton.setImage(image, for: .selected)
-//    }
 }
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -216,7 +193,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage,
             let buttonClickedTag = buttonClickedTag {
-            transformGridViewButtons(with: buttonClickedTag, image: image)
+            gridView.setImage(image, with: buttonClickedTag)
         }
         dismiss(animated: true, completion: nil)
     }
@@ -232,5 +209,4 @@ extension ViewController: GridViewDelegate {
         buttonClickedTag = tag
         showAction()
     }
-  
 }

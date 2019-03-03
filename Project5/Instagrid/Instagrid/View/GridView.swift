@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 protocol GridViewDelegate: class {
     func gridView(_ gridView: GridView, didSelectButton tag: Int)
 }
@@ -23,10 +21,10 @@ class GridView: UIView {
 
     // MARK - Properties
     
-    let topLeftButton = UIButton()
-    let topRightButton = UIButton()
-    let botLeftButton = UIButton()
-    let botRightButton = UIButton()
+    private let topLeftButton = UIButton()
+    private let topRightButton = UIButton()
+    private let botLeftButton = UIButton()
+    private let botRightButton = UIButton()
     weak var delegate: GridViewDelegate?
     
     var style: Style = .classic {
@@ -41,6 +39,7 @@ class GridView: UIView {
         super.awakeFromNib()
 
         setupGridViewButtonsTag()
+        addButtonsInStackViews()
         configureAllGridViewButtons()
     }
     
@@ -58,13 +57,25 @@ class GridView: UIView {
         delegate?.gridView(self, didSelectButton: sender.tag)
     }
  
-    // MARK: - Public Functions
+    // MARK: - Public Methods
     
     func asImage() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
         return renderer.image(actions: { rendererContext in
             layer.render(in: rendererContext.cgContext)
         })
+    }
+    
+    func setImage(_ image: UIImage, with tag: Int) {
+        if tag == topLeftButton.tag {
+            topLeftButton.setImage(image, for: .normal)
+        } else if tag == topRightButton.tag {
+            topRightButton.setImage(image, for: .normal)
+        } else if tag == botLeftButton.tag {
+            botLeftButton.setImage(image, for: .normal)
+        } else if tag == botRightButton.tag {
+            botRightButton.setImage(image, for: .normal)
+        }
     }
     
     func configureAllGridViewButtons() {
@@ -81,26 +92,27 @@ class GridView: UIView {
         botRightButton.isSelected = false
     }
 
-    // MARK: - Private Functions
+    // MARK: - Private Methods
     
     private func setStyle(_ style: Style) {
-        removeButtons()
         switch style {
         case .classic:
-            setupButton(button: topLeftButton, in: firstLineStackView)
-            setupButton(button: topRightButton, in: firstLineStackView)
-            setupButton(button: botLeftButton, in: secondLineStackView)
+            topLeftButton.isHidden = false
+            topRightButton.isHidden = false
+            botLeftButton.isHidden = false
+            botRightButton.isHidden = true
             
         case .reverse:
-            setupButton(button: topLeftButton, in: firstLineStackView)
-            setupButton(button: botLeftButton, in: secondLineStackView)
-            setupButton(button: botRightButton, in: secondLineStackView)
+            topLeftButton.isHidden = false
+            topRightButton.isHidden = true
+            botLeftButton.isHidden = false
+            botRightButton.isHidden = false
             
         case .square:
-            setupButton(button: topLeftButton, in: firstLineStackView)
-            setupButton(button: topRightButton, in: firstLineStackView)
-            setupButton(button: botLeftButton, in: secondLineStackView)
-            setupButton(button: botRightButton, in: secondLineStackView)
+            topLeftButton.isHidden = false
+            topRightButton.isHidden = false
+            botLeftButton.isHidden = false
+            botRightButton.isHidden = false
         }
     }
     
@@ -110,17 +122,6 @@ class GridView: UIView {
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
     }
     
-    private func removeButtons() {
-        topLeftButton.removeFromSuperview()
-        topRightButton.removeFromSuperview()
-        botLeftButton.removeFromSuperview()
-        botRightButton.removeFromSuperview()
-    }
-    
-    private func setupButton(button: UIButton, in view: UIStackView) {
-        view.addArrangedSubview(button)
-    }
-    
     private func setupGridViewButtonsTag() {
         topLeftButton.tag = 1
         topRightButton.tag = 2
@@ -128,6 +129,12 @@ class GridView: UIView {
         botRightButton.tag = 4
     }
     
+    private func addButtonsInStackViews() {
+        firstLineStackView.addArrangedSubview(topLeftButton)
+        firstLineStackView.addArrangedSubview(topRightButton)
+        secondLineStackView.addArrangedSubview(botLeftButton)
+        secondLineStackView.addArrangedSubview(botRightButton)
+    }
 }
 
 

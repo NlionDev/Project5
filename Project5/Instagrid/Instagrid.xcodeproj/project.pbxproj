@@ -14,7 +14,6 @@
 		030BF68C21D4D28600DFAB2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030BF68A21D4D28600DFAB2F /* LaunchScreen.storyboard */; };
 		030BF69821D8BBD400DFAB2F /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 030BF69721D8BBD400DFAB2F /* ThirstySoftRegular.otf */; };
 		030BF69A21D8BBDC00DFAB2F /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 030BF69921D8BBDC00DFAB2F /* Delm-Medium.otf */; };
-		038595412202D8A80008DB70 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038595402202D8A80008DB70 /* Model.swift */; };
 		03B08DE821DD259100590450 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B08DE721DD259100590450 /* GridView.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +27,6 @@
 		030BF68D21D4D28600DFAB2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		030BF69721D8BBD400DFAB2F /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ThirstySoftRegular.otf; path = ../ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		030BF69921D8BBDC00DFAB2F /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delm-Medium.otf"; path = "../Delm-Medium.otf"; sourceTree = "<group>"; };
-		038595402202D8A80008DB70 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		03B08DE721DD259100590450 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,8 +64,6 @@
 				030BF69921D8BBDC00DFAB2F /* Delm-Medium.otf */,
 				030BF69721D8BBD400DFAB2F /* ThirstySoftRegular.otf */,
 				030BF68821D4D28600DFAB2F /* Assets.xcassets */,
-				030BF68A21D4D28600DFAB2F /* LaunchScreen.storyboard */,
-				030BF68521D4D28400DFAB2F /* Main.storyboard */,
 				030BF68121D4D28400DFAB2F /* AppDelegate.swift */,
 				030BF69621D4D2CA00DFAB2F /* Controller */,
 				030BF69521D4D2C300DFAB2F /* View */,
@@ -79,7 +75,6 @@
 		030BF69321D4D2B100DFAB2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				038595402202D8A80008DB70 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -87,6 +82,8 @@
 		030BF69521D4D2C300DFAB2F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				030BF68A21D4D28600DFAB2F /* LaunchScreen.storyboard */,
+				030BF68521D4D28400DFAB2F /* Main.storyboard */,
 				03B08DE721DD259100590450 /* GridView.swift */,
 			);
 			path = View;
@@ -176,7 +173,6 @@
 				030BF68421D4D28400DFAB2F /* ViewController.swift in Sources */,
 				03B08DE821DD259100590450 /* GridView.swift in Sources */,
 				030BF68221D4D28400DFAB2F /* AppDelegate.swift in Sources */,
-				038595412202D8A80008DB70 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
